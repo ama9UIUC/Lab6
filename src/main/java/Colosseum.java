@@ -103,9 +103,63 @@ public class Colosseum {
      *         <p>
      */
     public static Pokemon buildPokemon() {
-        Pokemon returnPokemon = null;
-        return returnPokemon;
+        Pokemon newPokemon = new Pokemon();
+        myScan= new Scanner(System.in);
+        System.out.println("Select from the following Pokemon types: 1 = Electric; 2 = Fire; 3 = Water");
+        int input;
+        boolean pokemonType = false;
+        while (!pokemonType) {
+            input = myScan.nextInt();
+            if (input == 1) {
+                newPokemon = new ElectricPokemon();
+                pokemonType = true;
+            } else if (input == 2) {
+                newPokemon = new FirePokemon();
+                pokemonType = true;
+            } else if (input == 3) {
+                newPokemon = new WaterPokemon();
+                pokemonType = true;
+            }
+            System.out.println("Please choose a valid Pokemon type");
+        }
+        System.out.println("Please name your Pokemon");
+        String pokeName = myScan.next();
+        newPokemon.setName(pokeName);
+        System.out.println("How man hit points will it have? (1-50)");
+        boolean validHitPoints = false;
+        while (!validHitPoints) {
+            newPokemon.setHitPoints(myScan.nextInt());
+            if (newPokemon.getHitPoints() > MAX_HIT_POINTS || newPokemon.getHitPoints() < 0) {
+                System.out.println("Sorry. Hit points must be between 1 and 50");
+            } else{
+                validHitPoints = true;
+            }
+        }
+        System.out.println("Enter your attack level (1-49):");
+        boolean validAttackPoints = false;
+        while (!validAttackPoints) {
+            int attackLevel = myScan.nextInt();
+            if (newPokemon.getAttackLevel() > 1  && newPokemon.getAttackLevel() <= MAX_HIT_POINTS - 1) {
+                validAttackPoints = true;
+            } else{
+                System.out.println("Sorry. Attack points must be between 1 and 49");
+            }
+        }
+        System.out.println("Enter your defense level (1-3)");
+        boolean validDefense = false;
+        while (!validDefense) {
+            int DefenseLevel() = myScan.nextInt();
+            if (newPokemon.getDefenseLevel() > 0 && newPokemon.getDefenseLevel() == MAX_HIT_POINTS - newPokemon.getAttackLevel()) {
+                validDefense = true;
+            } else{
+                System.out.println("Sorry. Defense points must be between 1 and 3");
+            }
+        }
+
+        return tempPokemon;
+
     }
+
 
     /**
      * Prints who is ahead.
